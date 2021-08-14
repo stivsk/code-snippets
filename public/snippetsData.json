@@ -1,0 +1,45 @@
+{
+  "snippets": [{
+    "type": "div",
+    "className": "root",
+    "style": "color: red;padding: 10px;",
+    "category": "html",
+    "pseudoElements": [
+      {
+        "type": "after",
+        "style": "content: '';width: 100px; height: 100px;"
+      },
+      {
+        "type": "before",
+        "style": "content: '';width: 100px; height: 100px;"
+      }
+    ],
+    "childElements": [
+      {
+        "type": "span",
+        "style": "background: red;width: 100px; height: 100px;"
+      }
+    ]
+  }, {
+    "type": "div",
+    "className": "root",
+    "style": "color: red;padding: 10px;",
+    "category": "html",
+    "pseudoElements": [
+      {
+        "type": "after",
+        "style": "content: '';width: 100px; height: 100px;"
+      },
+      {
+        "type": "before",
+        "style": "content: '';width: 100px; height: 100px;"
+      }
+    ],
+    "childElements": [
+      {
+        "type": "span",
+        "style": "background: red;width: 100px; height: 100px;"
+      }
+    ]
+  }]
+}
