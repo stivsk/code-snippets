@@ -8,4 +8,5 @@ export interface IHtmlCodeSnippetEntity {
   innerText: string;
   pseudoElements: IHtmlBasicStructure[];
   childElements: IHtmlBasicStructure[];
+  animation: string;
 }

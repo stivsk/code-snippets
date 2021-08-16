@@ -11,4 +11,6 @@ export interface IHtmlCodeSnippet {
   mapPseudoElementStyle(pseudo: IHtmlBasicStructure, className: string): string;
   createInnerElementsMarkup(): string;
   mapClassStyle(): string;
+  replaceMarkup({ type, className, innerMarkup }: any): string;
+  mapInnerElementsStyle(): string;
 }

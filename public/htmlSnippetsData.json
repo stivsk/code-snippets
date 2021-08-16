@@ -1,18 +1,63 @@
 {
-  "snippets": [{
+  "snippets": [
+    {
+      "type": "div",
+      "className": "load",
+      "style": "position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:100px; height:100px;",
+      "category": "html",
+      "innerText": "",
+      "pseudoElements": [
+        {
+          "type": ">:first-child",
+          "style": "background:#19A68C;animation-delay:-1.5s;"
+        },
+        {
+          "type": ">:nth-child(2)",
+          "style": "background:#F63D3A;animation-delay:-1s;"
+        },
+        {
+          "type": ">:nth-child(3)",
+          "style": "background:#FDA543;animation-delay:-0.5s;"
+        },
+        {
+          "type": ">:last-child",
+          "style": "background:#193B48;"
+        }
+      ],
+      "childElements": [
+        {
+          "type": "hr",
+          "style": "border:0;margin:0;width:40%;height:40%;position:absolute;border-radius:50%;animation:spin 2s ease infinite;"
+        },
+        {
+          "type": "hr",
+          "style": ""
+        },
+        {
+          "type": "hr",
+          "style": ""
+        },
+        {
+          "type": "hr",
+          "style": ""
+        }
+      ],
+      "animation": "@keyframes spin{  0%,100%{transform:translate(0)}  25%{transform:translate(160%)}  50%{transform:translate(160%, 160%)}  75%{transform:translate(0, 160%)}}"
+    }
+    ,{
     "type": "div",
     "className": "root",
-    "style": "color: red;padding: 10px;",
+    "style": "background: red;padding: 10px;position:relative;",
     "category": "html",
     "innerText": "example inner text",
     "pseudoElements": [
       {
-        "type": "after",
-        "style": "content: '';width: 100px; height: 100px;"
+        "type": "::after",
+        "style": "content: '';width: 100px; height: 100px;background: blue;position: absolute;"
       },
       {
-        "type": "before",
-        "style": "content: '';width: 100px; height: 100px;"
+        "type": "::before",
+        "style": "content: '';width: 100px; height: 100px;background: purple;position: absolute;top: 0;"
       }
     ],
     "childElements": [
@@ -29,11 +74,11 @@
     "innerText": "example inner text",
     "pseudoElements": [
       {
-        "type": "after",
+        "type": "::after",
         "style": "content: '';width: 100px; height: 100px;"
       },
       {
-        "type": "before",
+        "type": "::before",
         "style": "content: '';width: 100px; height: 100px;"
       }
     ],

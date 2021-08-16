@@ -15,4 +15,6 @@ export class HtmlCodeSnippetEntity implements IHtmlCodeSnippetEntity {
   pseudoElements: IHtmlBasicStructure[] = [];
 
   childElements: IHtmlBasicStructure[] = [];
+
+  animation: string = '';
 }

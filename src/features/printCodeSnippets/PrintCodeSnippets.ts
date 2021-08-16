@@ -8,13 +8,9 @@ export class PrintCodeSnippets implements IPrintCodeSnippets {
     this.snippets = snippets;
   }
 
-  getPrintable(): string {
-    let printable = '';
-
-    this.snippets.forEach(snippet => {
-      printable += snippet.buildSnippetStructure().getCodeSnippetAsString();
-    });
-
-    return printable;
+  getPrintableArray(): string[] {
+    return this.snippets.map(snippet =>
+      snippet.buildSnippetStructure().getCodeSnippetAsString()
+    );
   }
 }

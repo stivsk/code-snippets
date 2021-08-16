@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import htmlParse from 'html-react-parser';
 import SwiperCore, {
   Pagination,
   Navigation,
@@ -47,10 +48,13 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
 
   useEffect(() => {
     if (htmlSnippetsData.length > 0) {
-      const snippets = [new HtmlCodeSnippet(htmlSnippetsData[0])];
+      const snippets = htmlSnippetsData.map(
+        htmlSnippet => new HtmlCodeSnippet(htmlSnippet)
+      );
 
       const snippetsPrinter = new PrintCodeSnippets(snippets);
-      setSnippetTyping(snippetsPrinter.getPrintable());
+
+      setSnippetTyping(snippetsPrinter.getPrintableArray()[0]);
     }
   }, [htmlSnippetsData]);
 
@@ -67,7 +71,7 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
       }}
     >
       <SwiperSlide data-history="1">
-        <p>{status === LOADING_STATUS ? typedLoading : snippetTyping}</p>
+        {status === LOADING_STATUS ? typedLoading : htmlParse(snippetTyping)}
       </SwiperSlide>
       <SwiperSlide data-history="2">
         <img alt="macbook air" src={MACBOOK_IMAGE} />
