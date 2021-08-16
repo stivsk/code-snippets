@@ -1,3 +1,4 @@
 export interface ICodeSnippet {
-  getSnippetAsString(): string;
+  buildSnippetStructure(): ICodeSnippet;
+  getCodeSnippetAsString(): string;
 }

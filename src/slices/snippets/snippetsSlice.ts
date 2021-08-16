@@ -1,51 +1,46 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { SNIPPETS_SLICE_ACTION_ID } from '../../constants/actionsIds';
 import {
   FAILURE_STATUS,
   INIT_STATUS,
   LOADING_STATUS,
   SUCCESS_STATUS,
 } from '../../constants/status';
-import Snippet from '../../entities/HtmlSnippetEntity';
-import { ISnippetsEntity } from '../../interfaces/ISnippetsEntity';
-import { fetchSnippetsAsyncAction } from './snippetsActions';
+import { IServiceStatus } from '../../interfaces/IServiceStatus';
+import { IHtmlCodeSnippetsEntity } from '../../interfaces/IHtmlCodeSnippetsEntity';
+import { fetchSnippetsAsync } from './snippetsActions';
 
-export interface SnippetsState {
-  data: ISnippetsEntity;
-  status: 'init' | 'loading' | 'success' | 'failure';
+export interface SnippetsState extends IServiceStatus {
+  data: IHtmlCodeSnippetsEntity;
   error: any;
 }
 
 const initialState: SnippetsState = {
   data: {
-    snippets: [new Snippet()],
+    snippets: [],
   },
   status: INIT_STATUS,
   error: {},
 };
 
 export const snippetsSlice = createSlice({
-  name: 'snippets',
+  name: SNIPPETS_SLICE_ACTION_ID,
   reducers: {},
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(fetchSnippetsAsyncAction.pending, state => {
+      .addCase(fetchSnippetsAsync.pending, state => {
         state.status = LOADING_STATUS;
       })
-      .addCase(fetchSnippetsAsyncAction.fulfilled, (state, action) => {
+      .addCase(fetchSnippetsAsync.fulfilled, (state, action) => {
         state.status = SUCCESS_STATUS;
         state.data = action.payload;
       })
-      .addCase(fetchSnippetsAsyncAction.rejected, (state, action) => {
+      .addCase(fetchSnippetsAsync.rejected, (state, action) => {
         state.status = FAILURE_STATUS;
         state.error = action.payload;
       });
   },
 });
-
-export const actions = {
-  ...snippetsSlice.actions,
-  fetchSnippetsAsync: fetchSnippetsAsyncAction,
-};
 
 export default snippetsSlice.reducer;

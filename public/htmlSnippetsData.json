@@ -4,6 +4,7 @@
     "className": "root",
     "style": "color: red;padding: 10px;",
     "category": "html",
+    "innerText": "example inner text",
     "pseudoElements": [
       {
         "type": "after",
@@ -25,6 +26,7 @@
     "className": "root",
     "style": "color: red;padding: 10px;",
     "category": "html",
+    "innerText": "example inner text",
     "pseudoElements": [
       {
         "type": "after",
