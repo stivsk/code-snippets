@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import htmlParse from 'html-react-parser';
+
 import SwiperCore, {
   Pagination,
   Navigation,
@@ -22,10 +23,10 @@ import './CodeSnippets.css';
 
 import { LOADING_STATUS } from '../../constants/status';
 import { HtmlCodeSnippet } from '../../features/htmlCodeSnippet/HtmlCodeSnippet';
-import { PrintCodeSnippets } from '../../features/printCodeSnippets/PrintCodeSnippets';
+import CodeSnippet from '../../components/CodeSnippet/CodeSnippet';
+import { IHtmlCodeSnippetEntity } from '../../interfaces/IHtmlCodeSnippetEntity';
+import { ICodeSnippet } from '../../interfaces/ICodeSnippet';
 
-const MACBOOK_IMAGE =
-  'https://www.apple.com/v/macbook-air/j/images/meta/macbook-air_overview__15sjf4iagj6q_og.png?202106280921';
 const HTML_SWIPER_HISTORY_KEY = 'snippet/html';
 const HTML_SWIPER_DIRECTION = 'vertical';
 
@@ -36,46 +37,55 @@ export interface CodeSnippetsProps {}
 
 const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
   const dispatch = useAppDispatch();
-  const { status } = useAppSelector(selectSnippetData);
+  const { status: snippetsStatus } = useAppSelector(selectSnippetData);
   const htmlSnippetsData = useAppSelector(selectSnippetsArray);
 
-  const [typedLoading] = useSimulateTyping('Loading ...');
-  const [snippetTyping, setSnippetTyping] = useState('');
+  const [typedLoading] = useSimulateTyping('Loading Snippets...', 40);
 
   useEffect(() => {
     dispatch(fetchSnippetsAsync());
   }, []);
 
-  useEffect(() => {
-    if (htmlSnippetsData.length > 0) {
-      const snippets = htmlSnippetsData.map(
-        htmlSnippet => new HtmlCodeSnippet(htmlSnippet)
-      );
+  const mapHtmlSnippetsArray = (snippetsData: IHtmlCodeSnippetEntity[]) =>
+    snippetsData.map(htmlSnippet => new HtmlCodeSnippet(htmlSnippet));
 
-      const snippetsPrinter = new PrintCodeSnippets(snippets);
+  const codeSnippetsArray = [...mapHtmlSnippetsArray(htmlSnippetsData)];
 
-      setSnippetTyping(snippetsPrinter.getPrintableArray()[0]);
-    }
-  }, [htmlSnippetsData]);
+  const renderSnippetSwiperSlide = (
+    codeSnippet: ICodeSnippet,
+    index: number
+  ) => {
+    const snippetAsString = codeSnippet.getCodeSnippetAsString();
+
+    return (
+      <SwiperSlide data-history={index} key={codeSnippet.id}>
+        <CodeSnippet
+          snippetRenderCode={() => htmlParse(snippetAsString)}
+          snippetTypingCode={snippetAsString}
+          language={codeSnippet.category}
+        />
+      </SwiperSlide>
+    );
+  };
 
   return (
     <Swiper
       direction={HTML_SWIPER_DIRECTION}
       pagination
       navigation
-      mousewheel
       slidesPerView={1}
-      className="mySwiper"
+      className="snippetsSwipper"
       history={{
         key: HTML_SWIPER_HISTORY_KEY,
       }}
     >
-      <SwiperSlide data-history="1">
-        {status === LOADING_STATUS ? typedLoading : htmlParse(snippetTyping)}
-      </SwiperSlide>
-      <SwiperSlide data-history="2">
-        <img alt="macbook air" src={MACBOOK_IMAGE} />
-      </SwiperSlide>
+      {snippetsStatus !== LOADING_STATUS ? (
+        codeSnippetsArray.map(renderSnippetSwiperSlide)
+      ) : (
+        <SwiperSlide data-history={0}>
+          <h3>{typedLoading}</h3>
+        </SwiperSlide>
+      )}
     </Swiper>
   );
 };

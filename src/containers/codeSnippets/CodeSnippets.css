@@ -25,11 +25,12 @@ body {
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: white;
+  background: rgb(24, 24, 24);
 
   /* Center slide text vertically */
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -40,6 +41,27 @@ body {
   object-fit: cover;
 }
 
-.swiper-pagination-bullet-active {
-  background: indigo;
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: rgb(104, 29, 245);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet {
+  background: white;
+  opacity: 0.5;
+}
+
+pre {
+  width: 100%;
+  margin: 0;
+  height: 50%;
+  font-size: small;
+}
+
+pre > code {
+  text-align: left;
+  white-space: pre-line;
+  height: 100%;
+  padding: 25px !important;
+  margin: -50px 0 !important;
 }

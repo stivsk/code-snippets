@@ -1,6 +1,8 @@
 import _ from 'lodash';
+import toDiffableHtml from 'diffable-html';
+import beautify from 'simply-beautiful';
+
 import { IHtmlCodeSnippetEntity } from '../../interfaces/IHtmlCodeSnippetEntity';
-import { ICodeSnippet } from '../../interfaces/ICodeSnippet';
 import { IHtmlBasicStructure } from '../../interfaces/IHtmlBasicStructure';
 import { IHtmlCodeSnippet } from '../../interfaces/IHtmlCodeSnippet';
 
@@ -17,13 +19,17 @@ const STYLE_MARKUP_STRUCTURE = `<style>${STYLE_REPLACE_KEY}</style>`;
 const HTML_MARKUP_STRUCTURE = `<${MARKUP_REPLACE_KEY} class="${CLASS_REPLACE_KEY}">${INNER_MARKUP_REPLACE_KEY}</${MARKUP_REPLACE_KEY}>`;
 const INNER_ELEMENT_STYLE_STRUCTURE = `.${CLASS_REPLACE_KEY} ${INNER_ELEMENT_REPLACE_KEY}{ ${STYLE_REPLACE_KEY} }`;
 
-export class HtmlCodeSnippet implements IHtmlCodeSnippet, ICodeSnippet {
+export class HtmlCodeSnippet implements IHtmlCodeSnippet {
   snippet: IHtmlCodeSnippetEntity;
 
-  snippetStructure: string = '';
+  id: string;
+
+  category: string;
 
   constructor(snippet: IHtmlCodeSnippetEntity) {
     this.snippet = snippet;
+    this.id = snippet.id;
+    this.category = snippet.category;
   }
 
   mapClassStyle(): string {
@@ -75,19 +81,19 @@ export class HtmlCodeSnippet implements IHtmlCodeSnippet, ICodeSnippet {
       .join('\n');
   }
 
-  mapElementAnimation() {
-    const { animation } = this.snippet;
-
-    return animation;
+  mapElementAnimation(): string {
+    return `\n${this.snippet.animation}`;
   }
 
-  createStylesMarkup(): string {
-    const innerMarkupStyle = `
-      ${this.mapClassStyle()}
-      ${this.mapInnerElementsStyle()}
-      ${this.mapPseudoElementsStyle()}
-      ${this.mapElementAnimation()}
-    `;
+  getElementStyles(): string {
+    const elementStyles = `
+    ${this.mapClassStyle()} ${this.mapInnerElementsStyle()} ${this.mapPseudoElementsStyle()} ${this.mapElementAnimation()}`;
+
+    return beautify.css(elementStyles);
+  }
+
+  getStylesMarkup(): string {
+    const innerMarkupStyle = this.getElementStyles();
 
     return STYLE_MARKUP_STRUCTURE.replace(STYLE_REPLACE_KEY, innerMarkupStyle);
   }
@@ -105,7 +111,7 @@ export class HtmlCodeSnippet implements IHtmlCodeSnippet, ICodeSnippet {
       .join(' ');
   }
 
-  createHtmlMarkup(): string {
+  getHtmlMarkup(): string {
     const { type, className } = this.snippet;
 
     const containerElement = this.replaceMarkup({
@@ -114,19 +120,16 @@ export class HtmlCodeSnippet implements IHtmlCodeSnippet, ICodeSnippet {
       innerMarkup: this.createInnerElementsMarkup(),
     });
 
-    return containerElement;
+    return toDiffableHtml(containerElement);
   }
 
-  buildSnippetStructure(): ICodeSnippet {
-    this.snippetStructure = `
-      ${this.createStylesMarkup()}
-      ${this.createHtmlMarkup()}
-    `;
-
-    return this;
+  getSnippetStructure(): string[] {
+    return [this.getStylesMarkup(), this.getHtmlMarkup()];
   }
 
   getCodeSnippetAsString(): string {
-    return this.snippetStructure;
+    const [stylesMarkup, htmlMarkup] = this.getSnippetStructure();
+
+    return `${stylesMarkup}\n${htmlMarkup}`;
   }
 }
