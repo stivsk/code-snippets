@@ -4,9 +4,9 @@
     "id": "snpt_01",
     "type": "div",
     "className": "animated-gradient",
-    "style": "background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);background-size: 400% 400%;animation: gradient 13s ease infinite;height: 86%;width: 100vw;",
+    "style": "background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);background-size: 400% 400%;animation: gradient 5s ease infinite;height: 86%;width: 100vw;",
     "category": "html",
-    "innerText": "example inner text",
+    "innerText": "",
     "pseudoElements": [],
     "childElements": [],
     "animation": "@keyframes gradient {0% {background-position: 0% 50%;}50% {background-position: 100% 50%;}100% {background-position: 0% 50%;}"
@@ -17,7 +17,7 @@
     "className": "tiktok",
     "style": "margin: 40px auto;width: 30px;height: 160px;background:#fff;box-shadow: 11px 10px 0 0 #fe2d52;filter: drop-shadow(-10px -10px 0 #28ffff);position: relative",
     "category": "html",
-    "innerText": "example inner text",
+    "innerText": "",
     "pseudoElements": [
       {
         "type": "::after",
@@ -37,7 +37,7 @@
     "className": "netflix",
     "style": "background: #b1060f;height: 250px;width: 60px;position: relative;margin-top: 30px;right: 50%;",
     "category": "html",
-    "innerText": "example inner text",
+    "innerText": "",
     "pseudoElements": [
       {
         "type": "::after",
@@ -62,7 +62,7 @@
     "className": "instagram",
     "style": "background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);height: 15rem;width: 15rem;position: relative;margin-top: 30px;border-radius: 30%;",
     "category": "html",
-    "innerText": "example inner text",
+    "innerText": "",
     "pseudoElements": [
       {
         "type": "::after",
@@ -82,7 +82,7 @@
     "animation": ""
   },
   {
-    "id": "snpt_0X",
+    "id": "snpt_05",
     "type": "div",
     "className": "load",
     "style": "position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:100px; height:100px;",

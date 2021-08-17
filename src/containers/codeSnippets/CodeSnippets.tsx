@@ -26,6 +26,7 @@ import { HtmlCodeSnippet } from '../../features/htmlCodeSnippet/HtmlCodeSnippet'
 import CodeSnippet from '../../components/CodeSnippet/CodeSnippet';
 import { IHtmlCodeSnippetEntity } from '../../interfaces/IHtmlCodeSnippetEntity';
 import { ICodeSnippet } from '../../interfaces/ICodeSnippet';
+import Loader from '../../components/Loader/Loader';
 
 const HTML_SWIPER_HISTORY_KEY = 'snippet/html';
 const HTML_SWIPER_DIRECTION = 'vertical';
@@ -83,7 +84,20 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
         codeSnippetsArray.map(renderSnippetSwiperSlide)
       ) : (
         <SwiperSlide data-history={0}>
-          <h3>{typedLoading}</h3>
+          <div>
+            <Loader />
+            <h3
+              style={{
+                top: '60%',
+                position: 'absolute',
+                color: 'white',
+                left: 0,
+                right: 0,
+              }}
+            >
+              {typedLoading}
+            </h3>
+          </div>
         </SwiperSlide>
       )}
     </Swiper>
