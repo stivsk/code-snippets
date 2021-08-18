@@ -1,11 +1,9 @@
+import { ICodeSnippetEntity } from './ICodeSnippetEntity';
 import { IHtmlBasicStructure } from './IHtmlBasicStructure';
 
-export interface IHtmlCodeSnippetEntity {
-  id: string;
-  type: string;
+export interface IHtmlCodeSnippetEntity extends ICodeSnippetEntity {
   className: string;
   style: string;
-  category: string;
   innerText: string;
   pseudoElements: IHtmlBasicStructure[];
   childElements: IHtmlBasicStructure[];

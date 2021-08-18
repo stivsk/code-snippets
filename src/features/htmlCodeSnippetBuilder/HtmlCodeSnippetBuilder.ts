@@ -6,6 +6,8 @@ import { IHtmlCodeSnippetBuilder } from '../../interfaces/IHtmlCodeSnippetBuilde
 import { IMarkupHandler } from '../../interfaces/IMarkupHandler';
 import { IStylesHandler } from '../../interfaces/IStylesHandler';
 
+const BLANK_LINE = '\n';
+
 export class HtmlCodeSnippetBuilder implements IHtmlCodeSnippetBuilder {
   snippet: IHtmlCodeSnippetEntity;
 
@@ -30,7 +32,7 @@ export class HtmlCodeSnippetBuilder implements IHtmlCodeSnippetBuilder {
       .map(childElement =>
         this.markupHandler.getHtmlMarkup({ type: childElement.type })
       )
-      .join('\n');
+      .join(BLANK_LINE);
   }
 
   getHtmlMarkup(): string {
@@ -44,10 +46,14 @@ export class HtmlCodeSnippetBuilder implements IHtmlCodeSnippetBuilder {
   }
 
   getElementStyles(): string {
-    const elementStyles = `
-    ${this.stylesHandler.getClassStyle()} ${this.stylesHandler.getInnerElementsStyle()} ${this.stylesHandler.getPseudoElementsStyle()} ${this.stylesHandler.getElementAnimation()}`;
+    const elementStyles = [
+      this.stylesHandler.getClassStyle(),
+      this.stylesHandler.getInnerElementsStyle(),
+      this.stylesHandler.getPseudoElementsStyle(),
+      this.stylesHandler.getElementAnimation(),
+    ];
 
-    return beautify.css(elementStyles);
+    return beautify.css(elementStyles.join(BLANK_LINE));
   }
 
   formatContent(content: string): string {
@@ -64,6 +70,6 @@ export class HtmlCodeSnippetBuilder implements IHtmlCodeSnippetBuilder {
   }
 
   getContentStructureAsString(): string {
-    return this.formatContent(this.getContentStructure().join('\n'));
+    return this.formatContent(this.getContentStructure().join(BLANK_LINE));
   }
 }

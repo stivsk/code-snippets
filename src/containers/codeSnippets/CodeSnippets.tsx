@@ -36,9 +36,9 @@ const HTML_SWIPER_DIRECTION = 'vertical';
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation, History, Mousewheel]);
 
-export interface CodeSnippetsProps {}
-
 const LOADING_MESSAGE = 'Loading Snippets...';
+
+export interface CodeSnippetsProps {}
 
 const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
   const dispatch = useAppDispatch();
@@ -65,14 +65,12 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
 
   const codeSnippetsArray = [...mapHtmlSnippetsArray(htmlSnippetsData)];
 
-  const renderSnippetSwiperSlide = (
-    codeSnippet: ICodeSnippet,
-    index: number
-  ) => {
+  const renderSnippetSwiperSlide = (codeSnippet: ICodeSnippet) => {
     const snippetAsString = codeSnippet.getCodeSnippetAsString();
+    const snippetId = codeSnippet.getSnippetId();
 
     return (
-      <SwiperSlide data-history={index} key={codeSnippet.getSnippetId()}>
+      <SwiperSlide data-history={snippetId} key={snippetId}>
         <CodeSnippet
           snippetRenderCode={() => htmlParse(snippetAsString)}
           snippetTypingCode={snippetAsString}

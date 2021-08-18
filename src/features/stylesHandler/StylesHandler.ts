@@ -13,6 +13,7 @@ const PSEUDO_ELEMENT_STYLE_STRUCTURE = `.${CLASS_REPLACE_KEY}${PSEUDO_SELECTOR_R
 const INNER_ELEMENT_STYLE_STRUCTURE = `.${CLASS_REPLACE_KEY} ${INNER_ELEMENT_REPLACE_KEY}{ ${STYLE_REPLACE_KEY} }`;
 
 const UNIQUE_IDENTIFIER_KEY = 'type';
+const BLANK_LINE = '\n';
 
 export class StylesHandler implements IStylesHandler {
   snippet: IHtmlCodeSnippetEntity;
@@ -43,7 +44,7 @@ export class StylesHandler implements IStylesHandler {
       this.getPseudoElementStyle(pseudoElement)
     );
 
-    return mappedPseudoElementStyles.join('\n');
+    return mappedPseudoElementStyles.join(BLANK_LINE);
   }
 
   getInnerElementsStyle(): string {
@@ -51,7 +52,7 @@ export class StylesHandler implements IStylesHandler {
 
     return _.uniqBy(childElements, UNIQUE_IDENTIFIER_KEY)
       .map(childElement => this.getInnerElementStyle(childElement))
-      .join('\n');
+      .join(BLANK_LINE);
   }
 
   getInnerElementStyle(innerElement: IHtmlBasicStructure): string {
