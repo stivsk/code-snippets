@@ -28,5 +28,5 @@ export const useSimulateTyping = (text: string = '', delay: number = 50) => {
     memoizedTypeEnteredText();
   }, [memoizedTypeEnteredText, text]);
 
-  return [typingText, setTypingText];
+  return typingText;
 };

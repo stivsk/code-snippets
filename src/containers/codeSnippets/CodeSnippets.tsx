@@ -12,7 +12,6 @@ import 'swiper/swiper.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/AppHooks';
-import { useSimulateTyping } from '../../hooks/useSimulateTyping';
 import { fetchSnippetsAsync } from '../../slices/snippets/snippetsActions';
 import {
   selectSnippetData,
@@ -27,6 +26,9 @@ import CodeSnippet from '../../components/CodeSnippet/CodeSnippet';
 import { IHtmlCodeSnippetEntity } from '../../interfaces/IHtmlCodeSnippetEntity';
 import { ICodeSnippet } from '../../interfaces/ICodeSnippet';
 import Loader from '../../components/Loader/Loader';
+import { HtmlCodeSnippetBuilder } from '../../features/htmlCodeSnippetBuilder/HtmlCodeSnippetBuilder';
+import { MarkupHandler } from '../../features/markupHandler/MarkupHandler';
+import { StylesHandler } from '../../features/stylesHandler/StylesHandler';
 
 const HTML_SWIPER_HISTORY_KEY = 'snippet/html';
 const HTML_SWIPER_DIRECTION = 'vertical';
@@ -36,19 +38,30 @@ SwiperCore.use([Pagination, Navigation, History, Mousewheel]);
 
 export interface CodeSnippetsProps {}
 
+const LOADING_MESSAGE = 'Loading Snippets...';
+
 const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
   const dispatch = useAppDispatch();
   const { status: snippetsStatus } = useAppSelector(selectSnippetData);
   const htmlSnippetsData = useAppSelector(selectSnippetsArray);
-
-  const [typedLoading] = useSimulateTyping('Loading Snippets...', 40);
 
   useEffect(() => {
     dispatch(fetchSnippetsAsync());
   }, []);
 
   const mapHtmlSnippetsArray = (snippetsData: IHtmlCodeSnippetEntity[]) =>
-    snippetsData.map(htmlSnippet => new HtmlCodeSnippet(htmlSnippet));
+    snippetsData.map(htmlSnippet => {
+      const markupHandler = new MarkupHandler();
+      const stylesHandler = new StylesHandler(htmlSnippet);
+
+      const snippetBuilder = new HtmlCodeSnippetBuilder(
+        htmlSnippet,
+        markupHandler,
+        stylesHandler
+      );
+
+      return new HtmlCodeSnippet(snippetBuilder);
+    });
 
   const codeSnippetsArray = [...mapHtmlSnippetsArray(htmlSnippetsData)];
 
@@ -59,20 +72,28 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
     const snippetAsString = codeSnippet.getCodeSnippetAsString();
 
     return (
-      <SwiperSlide data-history={index} key={codeSnippet.id}>
+      <SwiperSlide data-history={index} key={codeSnippet.getSnippetId()}>
         <CodeSnippet
           snippetRenderCode={() => htmlParse(snippetAsString)}
           snippetTypingCode={snippetAsString}
-          language={codeSnippet.category}
+          language={codeSnippet.getSnippetCategory()}
         />
       </SwiperSlide>
     );
   };
 
+  const renderLoader = () => (
+    <SwiperSlide data-history={0}>
+      <Loader loadingText={LOADING_MESSAGE} />
+    </SwiperSlide>
+  );
+
   return (
     <Swiper
       direction={HTML_SWIPER_DIRECTION}
-      pagination
+      pagination={{
+        clickable: true,
+      }}
       navigation
       slidesPerView={1}
       className="snippetsSwipper"
@@ -80,26 +101,9 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
         key: HTML_SWIPER_HISTORY_KEY,
       }}
     >
-      {snippetsStatus !== LOADING_STATUS ? (
-        codeSnippetsArray.map(renderSnippetSwiperSlide)
-      ) : (
-        <SwiperSlide data-history={0}>
-          <div>
-            <Loader />
-            <h3
-              style={{
-                top: '60%',
-                position: 'absolute',
-                color: 'white',
-                left: 0,
-                right: 0,
-              }}
-            >
-              {typedLoading}
-            </h3>
-          </div>
-        </SwiperSlide>
-      )}
+      {snippetsStatus !== LOADING_STATUS
+        ? codeSnippetsArray.map(renderSnippetSwiperSlide)
+        : renderLoader()}
     </Swiper>
   );
 };

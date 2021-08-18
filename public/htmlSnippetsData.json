@@ -4,7 +4,7 @@
     "id": "snpt_01",
     "type": "div",
     "className": "animated-gradient",
-    "style": "background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);background-size: 400% 400%;animation: gradient 5s ease infinite;height: 86%;width: 100vw;",
+    "style": "background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);background-size: 400% 400%;animation: gradient 5s ease infinite;height: 87%;width: 100vw;",
     "category": "html",
     "innerText": "",
     "pseudoElements": [],

@@ -8,6 +8,6 @@ export const fetchSnippets = () =>
     (resolveRequest, rejectRequest) =>
       fetch(SERVICE_DIRECTION)
         .then(response => response.json())
-        .then(data => setTimeout(() => resolveRequest({ data }), 1500))
+        .then(data => setTimeout(() => resolveRequest({ data }), 1000))
         .catch(error => rejectRequest(new Error(error)))
   );
