@@ -8,12 +8,14 @@ export interface CodeSnippetProps {
   language: string;
 }
 
+const TYPING_DELAY = 10;
+
 const CodeSnippet: React.FunctionComponent<CodeSnippetProps> = ({
   snippetRenderCode,
   snippetTypingCode,
   language,
 }: any) => {
-  const typedCode = useSimulateTyping(snippetTypingCode, 10);
+  const typedCode = useSimulateTyping(snippetTypingCode, TYPING_DELAY);
 
   return (
     <>
