@@ -63,7 +63,9 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
       return new HtmlCodeSnippet(snippetBuilder);
     });
 
-  const codeSnippetsArray = [...mapHtmlSnippetsArray(htmlSnippetsData)];
+  const codeSnippetsArray: ICodeSnippet[] = [
+    ...mapHtmlSnippetsArray(htmlSnippetsData),
+  ];
 
   const renderSnippetSwiperSlide = (codeSnippet: ICodeSnippet) => {
     const snippetAsString = codeSnippet.getCodeSnippetAsString();
