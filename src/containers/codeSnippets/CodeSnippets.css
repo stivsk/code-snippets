@@ -26,8 +26,6 @@ body {
   text-align: center;
   font-size: 18px;
   background: rgb(24, 24, 24);
-
-  /* Center slide text vertically */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -49,28 +47,4 @@ body {
 .swiper-pagination-bullet {
   background: white;
   opacity: 0.5;
-}
-
-pre {
-  width: 100%;
-  margin: 0;
-  height: 50%;
-  font-size: small;
-}
-
-pre > code {
-  text-align: left;
-  height: 100%;
-  padding: 25px !important;
-  margin: -50px 0 !important;
-}
-
-.loader_container {
-  position: absolute;
-  text-align: center;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #05000f;
 }

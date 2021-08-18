@@ -13,25 +13,15 @@ const Loader: React.FunctionComponent<LoaderProps> = ({
   const typedLoadingText = useSimulateTyping(loadingText, 30);
 
   return (
-    <>
+    <div className="loader_container">
       <div className="load">
         <hr />
         <hr />
         <hr />
         <hr />
       </div>
-      <h3
-        style={{
-          top: '60%',
-          position: 'absolute',
-          color: 'white',
-          left: 0,
-          right: 0,
-        }}
-      >
-        {typedLoadingText}
-      </h3>
-    </>
+      <h3 className="title">{typedLoadingText}</h3>
+    </div>
   );
 };
 

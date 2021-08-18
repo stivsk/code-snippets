@@ -16,19 +16,19 @@
   animation: spin 2s ease infinite;
 }
 .load > :first-child {
-  background: #19a68c;
+  background: #2e19a6;
   animation-delay: -1.5s;
 }
 .load > :nth-child(2) {
-  background: #f63d3a;
+  background: #563af6;
   animation-delay: -1s;
 }
 .load > :nth-child(3) {
-  background: #fda543;
+  background: #6543fd;
   animation-delay: -0.5s;
 }
 .load > :last-child {
-  background: #193b48;
+  background: #593ea3;
 }
 @keyframes spin {
   0%,
@@ -44,4 +44,36 @@
   75% {
     transform: translate(0, 160%);
   }
+}
+
+.loader_container {
+  position: absolute;
+  text-align: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #05000f;
+}
+
+.loader_container > .title {
+  top: 60%;
+  position: absolute;
+  color: white;
+  left: 0;
+  right: 0;
+}
+
+pre {
+  width: 100%;
+  margin: 0;
+  height: 50%;
+  font-size: small;
+}
+
+pre > code {
+  text-align: left;
+  height: 100%;
+  padding: 25px !important;
+  margin: -50px 0 !important;
 }

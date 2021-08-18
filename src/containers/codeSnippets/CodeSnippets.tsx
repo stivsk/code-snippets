@@ -80,12 +80,6 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
     );
   };
 
-  const renderLoader = () => (
-    <div className="loader_container">
-      <Loader loadingText={LOADING_MESSAGE} />
-    </div>
-  );
-
   const renderSwipper = () => (
     <Swiper
       direction={HTML_SWIPER_DIRECTION}
@@ -103,7 +97,11 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
     </Swiper>
   );
 
-  return snippetsStatus !== LOADING_STATUS ? renderSwipper() : renderLoader();
+  return snippetsStatus !== LOADING_STATUS ? (
+    renderSwipper()
+  ) : (
+    <Loader loadingText={LOADING_MESSAGE} />
+  );
 };
 
 export default CodeSnippets;
