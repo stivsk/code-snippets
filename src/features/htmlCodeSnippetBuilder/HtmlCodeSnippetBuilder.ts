@@ -1,11 +1,8 @@
-import beautify from 'simply-beautiful';
-import toDiffableHtml from 'diffable-html';
-
 import { IHtmlCodeSnippetEntity } from '../../interfaces/IHtmlCodeSnippetEntity';
 import { IHtmlCodeSnippetBuilder } from '../../interfaces/IHtmlCodeSnippetBuilder';
 import { IMarkupHandler } from '../../interfaces/IMarkupHandler';
 import { IStylesHandler } from '../../interfaces/IStylesHandler';
-import { BLANK_LINE } from '../../constants/commons';
+import { BLANK_LINE, INDENT_SIZE } from '../../constants/commons';
 
 export class HtmlCodeSnippetBuilder implements IHtmlCodeSnippetBuilder {
   snippet: IHtmlCodeSnippetEntity;
@@ -52,11 +49,14 @@ export class HtmlCodeSnippetBuilder implements IHtmlCodeSnippetBuilder {
       this.stylesHandler.getElementAnimation(),
     ];
 
-    return beautify.css(elementStyles.join(BLANK_LINE));
+    return this.stylesHandler.beautify(
+      elementStyles.join(BLANK_LINE),
+      INDENT_SIZE
+    );
   }
 
   formatContent(content: string): string {
-    return toDiffableHtml(content);
+    return this.markupHandler.beautify(content, INDENT_SIZE);
   }
 
   getContentStructure(): string[] {

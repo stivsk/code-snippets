@@ -10,4 +10,5 @@ export interface IStylesHandler {
   getPseudoElementStyle(pseudoElement: IHtmlBasicStructure): string;
   getPseudoElementsStyle(): string;
   getElementAnimation(): string;
+  beautify(code: string, indentSize: number): string;
 }

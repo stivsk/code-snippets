@@ -1,4 +1,6 @@
 import _ from 'lodash';
+import beautify from 'simply-beautiful';
+
 import {
   BLANK_LINE,
   CLASS_REPLACE_KEY,
@@ -22,7 +24,7 @@ export class StylesHandler implements IStylesHandler {
   }
 
   getElementAnimation(): string {
-    return `\n${this.snippet.animation}`;
+    return this.snippet.animation;
   }
 
   getPseudoElementStyle(pseudoElement: IHtmlBasicStructure): string {
@@ -72,5 +74,11 @@ export class StylesHandler implements IStylesHandler {
       STYLE_REPLACE_KEY,
       style
     );
+  }
+
+  beautify(code: string, indentSize: number): string {
+    return beautify.css(code, {
+      indent_size: indentSize,
+    });
   }
 }

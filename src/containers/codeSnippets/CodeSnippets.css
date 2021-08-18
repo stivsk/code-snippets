@@ -60,7 +60,6 @@ pre {
 
 pre > code {
   text-align: left;
-  white-space: pre-line;
   height: 100%;
   padding: 25px !important;
   margin: -50px 0 !important;

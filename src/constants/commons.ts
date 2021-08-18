@@ -20,3 +20,4 @@ export const HTML_SWIPER_HISTORY_KEY = 'snippet/html';
 export const HTML_SWIPER_DIRECTION = 'vertical';
 
 export const LOADING_MESSAGE = 'Loading Snippets...';
+export const INDENT_SIZE = 2;
