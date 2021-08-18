@@ -63,17 +63,3 @@
   left: 0;
   right: 0;
 }
-
-pre {
-  width: 100%;
-  margin: 0;
-  height: 50%;
-  font-size: small;
-}
-
-pre > code {
-  text-align: left;
-  height: 100%;
-  padding: 25px !important;
-  margin: -50px 0 !important;
-}
