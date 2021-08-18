@@ -29,14 +29,14 @@ import Loader from '../../components/Loader/Loader';
 import { HtmlCodeSnippetBuilder } from '../../features/htmlCodeSnippetBuilder/HtmlCodeSnippetBuilder';
 import { MarkupHandler } from '../../features/markupHandler/MarkupHandler';
 import { StylesHandler } from '../../features/stylesHandler/StylesHandler';
-
-const HTML_SWIPER_HISTORY_KEY = 'snippet/html';
-const HTML_SWIPER_DIRECTION = 'vertical';
+import {
+  HTML_SWIPER_DIRECTION,
+  HTML_SWIPER_HISTORY_KEY,
+  LOADING_MESSAGE,
+} from '../../constants/commons';
 
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation, History, Mousewheel]);
-
-const LOADING_MESSAGE = 'Loading Snippets...';
 
 export interface CodeSnippetsProps {}
 
@@ -105,4 +105,5 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
 
   return snippetsStatus !== LOADING_STATUS ? renderSwipper() : renderLoader();
 };
+
 export default CodeSnippets;

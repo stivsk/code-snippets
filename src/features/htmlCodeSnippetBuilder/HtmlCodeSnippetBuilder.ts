@@ -5,8 +5,7 @@ import { IHtmlCodeSnippetEntity } from '../../interfaces/IHtmlCodeSnippetEntity'
 import { IHtmlCodeSnippetBuilder } from '../../interfaces/IHtmlCodeSnippetBuilder';
 import { IMarkupHandler } from '../../interfaces/IMarkupHandler';
 import { IStylesHandler } from '../../interfaces/IStylesHandler';
-
-const BLANK_LINE = '\n';
+import { BLANK_LINE } from '../../constants/commons';
 
 export class HtmlCodeSnippetBuilder implements IHtmlCodeSnippetBuilder {
   snippet: IHtmlCodeSnippetEntity;

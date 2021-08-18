@@ -1,19 +1,18 @@
 import _ from 'lodash';
+import {
+  BLANK_LINE,
+  CLASS_REPLACE_KEY,
+  CSS_CLASS_STRUCTURE,
+  INNER_ELEMENT_REPLACE_KEY,
+  INNER_ELEMENT_STYLE_STRUCTURE,
+  PSEUDO_ELEMENT_STYLE_STRUCTURE,
+  PSEUDO_SELECTOR_REPLACE_KEY,
+  STYLE_REPLACE_KEY,
+  UNIQUE_IDENTIFIER_KEY,
+} from '../../constants/commons';
 import { IHtmlBasicStructure } from '../../interfaces/IHtmlBasicStructure';
 import { IHtmlCodeSnippetEntity } from '../../interfaces/IHtmlCodeSnippetEntity';
 import { IStylesHandler } from '../../interfaces/IStylesHandler';
-
-const CLASS_REPLACE_KEY: string = '[CLASS]';
-const STYLE_REPLACE_KEY: string = '[STYLE]';
-const PSEUDO_SELECTOR_REPLACE_KEY: string = '[PSEUDO]';
-const INNER_ELEMENT_REPLACE_KEY = '[INNER_ELEMENT]';
-
-const CSS_CLASS_STRUCTURE: string = `.${CLASS_REPLACE_KEY}{ ${STYLE_REPLACE_KEY} }`;
-const PSEUDO_ELEMENT_STYLE_STRUCTURE = `.${CLASS_REPLACE_KEY}${PSEUDO_SELECTOR_REPLACE_KEY}{ ${STYLE_REPLACE_KEY} }`;
-const INNER_ELEMENT_STYLE_STRUCTURE = `.${CLASS_REPLACE_KEY} ${INNER_ELEMENT_REPLACE_KEY}{ ${STYLE_REPLACE_KEY} }`;
-
-const UNIQUE_IDENTIFIER_KEY = 'type';
-const BLANK_LINE = '\n';
 
 export class StylesHandler implements IStylesHandler {
   snippet: IHtmlCodeSnippetEntity;
