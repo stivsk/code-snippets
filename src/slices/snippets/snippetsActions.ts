@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { FETCH_SNIPPETS_ACTION_ID } from '../../constants/actionsIds';
-import { fetchSnippets } from '../../services/snippetsAPI';
+import { fetchSnippets } from '../../services/htmlSnippetsAPI';
 
 export const fetchSnippetsAsync = createAsyncThunk(
   FETCH_SNIPPETS_ACTION_ID,
