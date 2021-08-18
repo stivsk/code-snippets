@@ -6,12 +6,14 @@ import { useState, useEffect, useCallback } from 'react';
  * @returns  [typingText, setTypingText]
  */
 export const useSimulateTyping = (text: string = '', delay: number = 50) => {
+  let fakeAsyncTimeout: any;
+
   const [typingText, setTypingText] = useState('');
 
   const memoizedTypingDelay = useCallback(
     async (letter: string, index: number): Promise<void> =>
       new Promise(resolve => {
-        setTimeout(() => {
+        fakeAsyncTimeout = setTimeout(() => {
           resolve(setTypingText(typedText => typedText + letter));
         }, 500 + index * delay);
       }),
@@ -26,6 +28,10 @@ export const useSimulateTyping = (text: string = '', delay: number = 50) => {
 
   useEffect(() => {
     memoizedTypeEnteredText();
+
+    return () => {
+      clearTimeout(fakeAsyncTimeout);
+    };
   }, [memoizedTypeEnteredText, text]);
 
   return typingText;
