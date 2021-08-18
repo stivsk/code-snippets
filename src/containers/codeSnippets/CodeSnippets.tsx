@@ -83,12 +83,12 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
   };
 
   const renderLoader = () => (
-    <SwiperSlide data-history={0}>
+    <div className="loader_container">
       <Loader loadingText={LOADING_MESSAGE} />
-    </SwiperSlide>
+    </div>
   );
 
-  return (
+  const renderSwipper = () => (
     <Swiper
       direction={HTML_SWIPER_DIRECTION}
       pagination={{
@@ -101,10 +101,10 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
         key: HTML_SWIPER_HISTORY_KEY,
       }}
     >
-      {snippetsStatus !== LOADING_STATUS
-        ? codeSnippetsArray.map(renderSnippetSwiperSlide)
-        : renderLoader()}
+      {codeSnippetsArray.map(renderSnippetSwiperSlide)}
     </Swiper>
   );
+
+  return snippetsStatus !== LOADING_STATUS ? renderSwipper() : renderLoader();
 };
 export default CodeSnippets;
