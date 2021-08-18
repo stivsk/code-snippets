@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import htmlParse from 'html-react-parser';
 
 import SwiperCore, {
   Pagination,
@@ -23,7 +22,6 @@ import './CodeSnippets.css';
 import { LOADING_STATUS } from '../../constants/status';
 import { HtmlCodeSnippet } from '../../features/htmlCodeSnippet/HtmlCodeSnippet';
 import CodeSnippet from '../../components/CodeSnippet/CodeSnippet';
-import { IHtmlCodeSnippetEntity } from '../../interfaces/IHtmlCodeSnippetEntity';
 import { ICodeSnippet } from '../../interfaces/ICodeSnippet';
 import Loader from '../../components/Loader/Loader';
 import { HtmlCodeSnippetBuilder } from '../../features/htmlCodeSnippetBuilder/HtmlCodeSnippetBuilder';
@@ -34,6 +32,7 @@ import {
   HTML_SWIPER_HISTORY_KEY,
   LOADING_MESSAGE,
 } from '../../constants/commons';
+import { JavascriptCodeSnippet } from '../../features/javascriptCodeSnippet/JavascriptCodeSnippet';
 
 // install Swiper modules
 SwiperCore.use([Pagination, Navigation, History, Mousewheel]);
@@ -49,8 +48,23 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
     dispatch(fetchSnippetsAsync());
   }, []);
 
-  const mapHtmlSnippetsArray = (snippetsData: IHtmlCodeSnippetEntity[]) =>
-    snippetsData.map(htmlSnippet => {
+  const renderSnippetSwiperSlide = (codeSnippet: ICodeSnippet) => {
+    const snippetAsString = codeSnippet.getCodeSnippetAsString();
+    const snippetId = codeSnippet.getSnippetId();
+
+    return (
+      <SwiperSlide data-history={snippetId} key={snippetId}>
+        <CodeSnippet
+          snippetRenderCode={() => codeSnippet.parse()}
+          snippetTypingCode={snippetAsString}
+          language={codeSnippet.getSnippetCategory()}
+        />
+      </SwiperSlide>
+    );
+  };
+
+  const mapHtmlSnippetsArray = () =>
+    htmlSnippetsData.map(htmlSnippet => {
       const markupHandler = new MarkupHandler();
       const stylesHandler = new StylesHandler(htmlSnippet);
 
@@ -64,23 +78,9 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
     });
 
   const codeSnippetsArray: ICodeSnippet[] = [
-    ...mapHtmlSnippetsArray(htmlSnippetsData),
+    ...mapHtmlSnippetsArray(),
+    new JavascriptCodeSnippet(),
   ];
-
-  const renderSnippetSwiperSlide = (codeSnippet: ICodeSnippet) => {
-    const snippetAsString = codeSnippet.getCodeSnippetAsString();
-    const snippetId = codeSnippet.getSnippetId();
-
-    return (
-      <SwiperSlide data-history={snippetId} key={snippetId}>
-        <CodeSnippet
-          snippetRenderCode={() => htmlParse(snippetAsString)}
-          snippetTypingCode={snippetAsString}
-          language={codeSnippet.getSnippetCategory()}
-        />
-      </SwiperSlide>
-    );
-  };
 
   const renderSwipper = () => (
     <Swiper

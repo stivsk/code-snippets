@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
+import { ICodeSnippetEntity } from './ICodeSnippetEntity';
 import { IHtmlBasicStructure } from './IHtmlBasicStructure';
-import { IHtmlCodeSnippetEntity } from './IHtmlCodeSnippetEntity';
 
 export interface IStylesHandler {
-  snippet: IHtmlCodeSnippetEntity;
+  snippet: ICodeSnippetEntity;
   getClassStyle(): string;
   getInnerElementStyle(innerElement: IHtmlBasicStructure): string;
   getInnerElementsStyle(): string;

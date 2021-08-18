@@ -17,7 +17,7 @@ export class MarkupHandler implements IMarkupHandler {
     return beautify.html(code, { indent_size: indentSize });
   }
 
-  getHtmlMarkup({ type, className = '', innerMarkup = '' }: any): string {
+  getHtmlMarkup({ type = '', className = '', innerMarkup = '' }: any): string {
     const htmlMarkup = HTML_MARKUP_STRUCTURE.replaceAll(
       MARKUP_REPLACE_KEY,
       type

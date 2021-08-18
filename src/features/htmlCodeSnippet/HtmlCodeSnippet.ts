@@ -1,11 +1,16 @@
+import htmlParse from 'html-react-parser';
+import { ICodeSnippetBuilder } from '../../interfaces/ICodeSnippetBuilder';
 import { IHtmlCodeSnippet } from '../../interfaces/IHtmlCodeSnippet';
-import { IHtmlCodeSnippetBuilder } from '../../interfaces/IHtmlCodeSnippetBuilder';
 
 export class HtmlCodeSnippet implements IHtmlCodeSnippet {
-  snippetBuilder: IHtmlCodeSnippetBuilder;
+  snippetBuilder: ICodeSnippetBuilder;
 
-  constructor(snippetBuilder: IHtmlCodeSnippetBuilder) {
+  constructor(snippetBuilder: ICodeSnippetBuilder) {
     this.snippetBuilder = snippetBuilder;
+  }
+
+  parse(): any {
+    return htmlParse(this.getCodeSnippetAsString());
   }
 
   getSnippetId(): string {

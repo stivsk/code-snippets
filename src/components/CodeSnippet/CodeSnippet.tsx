@@ -3,7 +3,7 @@ import Highlight from 'react-highlight';
 import { useSimulateTyping } from '../../hooks/useSimulateTyping';
 
 export interface CodeSnippetProps {
-  snippetRenderCode(): any;
+  snippetRenderCode(): Function;
   snippetTypingCode: string;
   language: string;
 }
@@ -14,7 +14,7 @@ const CodeSnippet: React.FunctionComponent<CodeSnippetProps> = ({
   snippetRenderCode,
   snippetTypingCode,
   language,
-}: any) => {
+}: CodeSnippetProps) => {
   const typedCode = useSimulateTyping(snippetTypingCode, TYPING_DELAY);
 
   return (
