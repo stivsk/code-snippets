@@ -12,7 +12,7 @@ const CodeSnippet: React.FunctionComponent<CodeSnippetProps> = ({
   snippetRenderCode,
   snippetTypingCode,
   language,
-}) => {
+}: any) => {
   const typedCode = useSimulateTyping(snippetTypingCode, 10);
 
   return (
