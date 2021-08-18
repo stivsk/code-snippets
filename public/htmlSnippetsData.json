@@ -15,7 +15,7 @@
     "id": "snpt_02",
     "type": "div",
     "className": "tiktok",
-    "style": "margin: 40px auto;width: 30px;height: 160px;background:#fff;box-shadow: 11px 10px 0 0 #fe2d52;filter: drop-shadow(-10px -10px 0 #28ffff);position: relative",
+    "style": "margin: 60px auto;width: 30px;height: 160px;background:#fff;box-shadow: 11px 10px 0 0 #fe2d52;filter: drop-shadow(-10px -10px 0 #28ffff);position: relative",
     "category": "html",
     "innerText": "",
     "pseudoElements": [
@@ -35,7 +35,7 @@
     "id": "snpt_03",
     "type": "div",
     "className": "netflix",
-    "style": "background: #b1060f;height: 250px;width: 60px;position: relative;margin-top: 30px;right: 50%;",
+    "style": "background: #b1060f;height: 250px;width: 60px;position: relative;margin-top: 60px;right: 50%;",
     "category": "html",
     "innerText": "",
     "pseudoElements": [
@@ -60,7 +60,7 @@
     "id": "snpt_04",
     "type": "div",
     "className": "instagram",
-    "style": "background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);height: 15rem;width: 15rem;position: relative;margin-top: 30px;border-radius: 30%;",
+    "style": "background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);height: 15rem;width: 15rem;position: relative;margin-top: 60px;border-radius: 30%;",
     "category": "html",
     "innerText": "",
     "pseudoElements": [
