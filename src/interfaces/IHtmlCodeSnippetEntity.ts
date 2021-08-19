@@ -4,7 +4,7 @@ import { IHtmlBasicStructure } from './IHtmlBasicStructure';
 export interface IHtmlCodeSnippetEntity extends ICodeSnippetEntity {
   className: string;
   style: string;
-  innerText: string;
+  description: string;
   pseudoElements: IHtmlBasicStructure[];
   childElements: IHtmlBasicStructure[];
   animation: string;

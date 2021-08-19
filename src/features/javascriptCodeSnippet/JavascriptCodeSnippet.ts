@@ -7,6 +7,10 @@ import { ICodeSnippet } from '../../interfaces/ICodeSnippet';
  * therefore it's implementation uses just the basics
  */
 export class JavascriptCodeSnippet implements ICodeSnippet {
+  getSnipperDescription(): string {
+    return 'Shows an alert in the browser';
+  }
+
   parse(): any {
     return htmlParse(this.getSnippetStructure().join(BLANK_LINE));
   }

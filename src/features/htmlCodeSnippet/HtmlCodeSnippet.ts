@@ -9,6 +9,10 @@ export class HtmlCodeSnippet implements IHtmlCodeSnippet {
     this.snippetBuilder = snippetBuilder;
   }
 
+  getSnipperDescription(): string {
+    return this.snippetBuilder.snippet.description;
+  }
+
   parse(): any {
     return htmlParse(this.getCodeSnippetAsString());
   }

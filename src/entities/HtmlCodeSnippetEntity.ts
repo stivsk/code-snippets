@@ -12,7 +12,7 @@ export class HtmlCodeSnippetEntity implements IHtmlCodeSnippetEntity {
 
   category: string = '';
 
-  innerText: string = '';
+  description: string = '';
 
   pseudoElements: IHtmlBasicStructure[] = [];
 

@@ -1,0 +1,21 @@
+.codeSnippetPreview {
+  position: relative;
+  height: 50%;
+}
+
+.codeSnippetDescription {
+  position: absolute;
+  background: #797979;
+  color: whitesmoke;
+  bottom: 13px;
+  height: 60px;
+  width: 90%;
+  border-radius: 4px;
+  text-align: left;
+  padding: 0 13px;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  display: flex;
+  align-items: center;
+  font-size: small;
+}

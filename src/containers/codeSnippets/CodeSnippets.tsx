@@ -58,6 +58,7 @@ const CodeSnippets: React.FunctionComponent<CodeSnippetsProps> = () => {
           snippetRenderCode={() => codeSnippet.parse()}
           snippetTypingCode={snippetAsString}
           language={codeSnippet.getSnippetCategory()}
+          description={codeSnippet.getSnipperDescription()}
         />
       </SwiperSlide>
     );

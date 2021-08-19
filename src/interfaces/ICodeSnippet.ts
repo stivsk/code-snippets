@@ -4,4 +4,5 @@ export interface ICodeSnippet {
   getCodeSnippetAsString(): string;
   getSnippetId(): string;
   getSnippetCategory(): string;
+  getSnipperDescription(): string;
 }
