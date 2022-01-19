@@ -1,6 +1,8 @@
 # Code Snippets
 
-This project shows how to implement SOLID principles in the frontend using React JS with TypeScript
+This project shows how to implement SOLID principles in the frontend using React JS with TypeScript by building a code snippets typer with preview in a vertical slider.
+
+![image](https://user-images.githubusercontent.com/7757898/150070350-0beccb1e-eb4c-4b79-b158-45c85d3a7d95.png)
 
 ## Available Scripts
 
